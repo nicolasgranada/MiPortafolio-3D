@@ -51,10 +51,13 @@ export function Panels({ panel, setPanel, project, setProject }) {
     )
     if (panel === "contact") return (
         <Modal title="Contacto" onClose={close}>
-            <p>¿Hablamos? Escríbeme o revisa mi trabajo:</p>
-            <a className="btn" href={`mailto:${profile.email}`}>Correo</a>
-            <a className="btn" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-            <a className="btn" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
+            <p><strong>¿Quieres ponerte en contacto conmigo?</strong></p>
+            <p>Estoy siempre abierto a colaborar, conectar y conversar sobre nuevos proyectos. Encuéntrame y hablemos a través de mis redes:</p>
+            <div className="contact-links">
+                <a className="btn" href={`mailto:${profile.email}`}>Correo</a>
+                <a className="btn" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+                <a className="btn" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
+            </div>
         </Modal>
     )
     if (panel === "docs") return (

@@ -6,7 +6,6 @@ import * as THREE from "three"
 import Ambience from "../../components/Ambience"
 import Controls from "../../components/Controls"
 import Floor from "../../components/models-3d/Floor"
-import Desk from "../../components/models-3d/Desk"
 import Library from "../../components/models-3d/Library"
 import Window from "../../components/models-3d/Window"
 import Player from "../../components/models-3d/Player"
@@ -14,6 +13,7 @@ import ProjectObject from "../../components/models-3d/ProjectObject"
 import FallingBlocks from "../../components/models-3d/FallingBlocks"
 import Title3D from "../../components/models-3d/Title3D"
 import BlenderModel from "../../components/models-3d/BlenderModel"
+import RoomDecor from "../../components/models-3d/RoomDecor"
 import { Hud, Loader, Panels } from "../../components/ui/Overlay"
 import { blenderModels, projects } from "../../data/portfolio"
 
@@ -27,6 +27,7 @@ const WorldPage = () => {
         { name: "back", keys: ["ArrowDown", "KeyS"] },
         { name: "left", keys: ["ArrowLeft", "KeyA"] },
         { name: "right", keys: ["ArrowRight", "KeyD"] },
+        { name: "jump", keys: ["Space"] },
     ], [])
 
     // WebGPU si está disponible; si no (o si falla) se usa WebGL
@@ -55,15 +56,15 @@ const WorldPage = () => {
                     <Suspense fallback={null}>
                         <Physics gravity={[0, -9.81, 0]}>
                             <Floor />
-                            <Desk position={[0, 0, -1.8]} />
                             <Library position={[-5.4, 0, -2.75]} />
-                            <Window position={[3.8, 3.1, -3.08]} />
+                            <Window position={[5.6, 3.4, -3.08]} />
+                            <RoomDecor />
                             <Player />
                             <FallingBlocks />
+                            {blenderModels.map((m) => <BlenderModel key={m.url} {...m} />)}
                         </Physics>
                         <Title3D />
                         {projects.map((p) => <ProjectObject key={p.id} project={p} onSelect={(x) => { setPanel(null); setProject(x) }} />)}
-                        {blenderModels.map((m) => <BlenderModel key={m.url} {...m} />)}
                     </Suspense>
                 </Canvas>
             </KeyboardControls>

@@ -37,6 +37,7 @@ Oficina 3D interactiva (React + Vite + React Three Fiber). Mantiene la estructur
 2. **Bake** de normales (alta→baja), AO y color; pinta mapas PBR (base color, normal, roughness).
 3. Exporta **glTF Binary (.glb)** con materiales/texturas → `public/models/`.
 4. Regístralo en `blenderModels` de `portfolio.js`: `{ url: '/models/mi.glb', position: [0,0,0], scale: 1 }`.
+   Los archivos `.blend` se conservan como fuente, pero la escena web usa su exportación `.glb`.
 
 ## Pendientes tuyos
 Reemplaza correo/LinkedIn/GitHub, habilidades, proyectos y capturas (`public/projects/`), y añade tus modelos de Blender.
