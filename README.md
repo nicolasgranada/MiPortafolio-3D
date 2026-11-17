@@ -1,43 +1,56 @@
-# Portafolio 3D · Nicolás Granada
+Manual de usuario · Portafolio 3D de Nicolás Granada
+Guía para explorar la oficina 3D interactiva de Nicolás Granada, estudiante de Ingeniería de Sistemas de la Universidad del Valle.
 
-Oficina 3D interactiva (React + Vite + React Three Fiber). Mantiene la estructura del repositorio del curso
-(`pages/world/WorldPage.jsx`, `components/Ambience|Controls`, `components/models-3d/`, `public/`, Docker, oxlint).
+1. ¿Qué es este portafolio?
+Es una oficina de desarrollador en 3D que puedes recorrer desde el navegador. Allí encontrarás quién es Nicolás, sus habilidades, sus proyectos y cómo contactarlo. No necesitas instalar nada ni crear una cuenta.
 
-## Ejecutar
-`npm install && npm run dev` (http://localhost:5173) · o `docker compose up --build`
+2. Requisitos
+• Un navegador actualizado: Chrome, Edge, Firefox o Safari.
+• Un computador de gama media o superior. En celulares funciona, pero con menos controles (ver sección 5).
+• Conexión a internet para la primera carga.
+El portafolio usa WebGPU si tu navegador lo permite, y si no, cambia automáticamente a WebGL. Abajo a la derecha verás una insignia que dice Render: WebGPU o Render: WebGL (respaldo). Ambas funcionan igual para ti.
 
-## Arquitectura
-- `src/pages/world/WorldPage.jsx`: Canvas, renderer (WebGPU → respaldo WebGL), física, teclado y overlays.
-- `src/components/`: `Ambience` (luces + sombras), `Controls` (OrbitControls), `ui/Overlay` (HUD, paneles, loader).
-- `src/components/models-3d/`: `Floor`, `Desk`, `ProjectObject`, `Player`, `FallingBlocks`, `Title3D`, `BlenderModel`.
-- `src/data/portfolio.js`: **tus datos** (perfil, habilidades, proyectos, contacto, modelos Blender).
-- Tecnologías: three, @react-three/fiber, drei, @react-three/rapier, Vite, Docker, Blender.
+3. Primeros pasos
+•  Abre el enlace del portafolio.
+•  Espera a que termine la barra de carga ("Cargando escena 3D…").
+•  Verás la oficina con el nombre de Nicolás flotando en 3D, un escritorio con monitor, una biblioteca, una ventana, tres objetos de colores en el aire y un avatar.
 
-## Cumplimiento de historias de usuario
-| HU | Implementación |
-|---|---|
-| 01 | Canvas + `Loader` con progreso; assets livianos (<5 s) |
-| 02 | `OrbitControls` (arrastrar/zoom) |
-| 03, 15 | Suelo con mapas color/AO/normal/rugosidad; metal/rugosidad en materiales |
-| 04 | `meshMatcapMaterial` en libros, taza, esfera, avatar |
-| 05 | `directionalLight castShadow` + `receiveShadow` en suelo |
-| 06, 10, 11 | `ProjectObject`: clic abre panel con imagen/video; etiqueta `Html` anclada |
-| 07 | Hover: escala/rotación con `damp`, revierte al salir |
-| 08, 13 | `KeyboardControls` WASD/flechas; avatar con cuerpo Rapier bloqueado por escritorio/paredes |
-| 09 | `Text3D` con nombre y título |
-| 12 | `FallingBlocks` (RigidBody) cae y se detiene en el suelo |
-| 14, 20, 21 | `BlenderModel` carga `.glb` desde `public/models` (ver flujo abajo) |
-| 16 | Geometrías ligeras, `dpr` limitado, matcaps; verifica ≥30 FPS en tu equipo |
-| 17 | `three/webgpu` si `navigator.gpu`; si no, WebGLRenderer. Insignia "Render" visible |
-| 18 | Panel Contacto: correo, LinkedIn, GitHub |
-| 19 | Este README + panel "Documentación" (graba además un video corto) |
 
-## Flujo Blender (HU-14, 15, 20, 21)
-1. Esculpe alta resolución → retopología baja → **UV Unwrap** con costuras ocultas (comprueba con textura de cuadrícula).
-2. **Bake** de normales (alta→baja), AO y color; pinta mapas PBR (base color, normal, roughness).
-3. Exporta **glTF Binary (.glb)** con materiales/texturas → `public/models/`.
-4. Regístralo en `blenderModels` de `portfolio.js`: `{ url: '/models/mi.glb', position: [0,0,0], scale: 1 }`.
-   Los archivos `.blend` se conservan como fuente, pero la escena web usa su exportación `.glb`.
+4. La pantalla principal
+• Arriba a la izquierda: el nombre y el título profesional.
+• Arriba a la derecha: el menú con cuatro botones: Sobre mí, Habilidades, Contacto y Documentación.
+• Abajo al centro: un recordatorio rápido de los controles.
+• Abajo a la derecha: la insignia del motor de render.
 
-## Pendientes tuyos
-Reemplaza correo/LinkedIn/GitHub, habilidades, proyectos y capturas (`public/projects/`), y añade tus modelos de Blender.
+
+5. Qué hay en la escena
+• Texto 3D: el nombre y el título, flotando sobre el escritorio.
+• Escritorio y monitor: la pantalla muestra un pequeño mensaje de bienvenida.
+• Biblioteca y ventana: decoración de la oficina.
+• Bloques que caen: un cubo y una esfera que caen al cargar y rebotan sobre el suelo.
+• Objetos flotantes de colores: cada uno es un proyecto de Nicolás.
+
+6. Explorar los proyectos
+Tres objetos giran suavemente frente al escritorio, cada uno con su nombre en una etiqueta.
+1.  Pasa el cursor sobre un objeto: crece, gira más rápido y su etiqueta se resalta. Al retirar el cursor vuelve a su estado normal.
+2.  Haz clic sobre el objeto: se abre un panel a la derecha.
+3.  En el panel verás una imagen o video del proyecto, una descripción, las tecnologías usadas y el botón Ver en GitHub.
+4.  Para cerrarlo, pulsa la × de la esquina del panel.
+
+
+7. El menú superior
+Cada botón abre un panel; si lo pulsas otra vez, se cierra. Solo hay un panel abierto a la vez.
+• Sobre mí: saludo, presentación y barras con sus aptitudes (programación, diseño de software, desarrollo web y experiencias 3D).
+• Habilidades: lenguajes, tecnologías web y 3D, diseño de software y herramientas, en etiquetas agrupadas.
+• Contacto: botones directos a correo, LinkedIn y GitHub.
+• Documentación: resumen técnico de cómo está construido el portafolio y qué tecnologías usa.
+
+
+8. Cómo contactar a Nicolás
+1.  Abre Contacto en el menú.
+2.  Elige una opción:
+    ◦ Correo: abre tu programa de correo con la dirección ya escrita.
+    ◦ LinkedIn: abre su perfil profesional en otra pestaña.
+    ◦ GitHub: abre su perfil de código en otra pestaña.
+
+    
