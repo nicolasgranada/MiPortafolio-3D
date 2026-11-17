@@ -1,5 +1,4 @@
 Manual de usuario · Portafolio 3D de Nicolás Granada
-Guía para explorar la oficina 3D interactiva de Nicolás Granada, estudiante de Ingeniería de Sistemas de la Universidad del Valle.
 
 1. ¿Qué es este portafolio?
 Es una oficina de desarrollador en 3D que puedes recorrer desde el navegador. Allí encontrarás quién es Nicolás, sus habilidades, sus proyectos y cómo contactarlo. No necesitas instalar nada ni crear una cuenta.
